@@ -22,7 +22,6 @@ class GameBoardDataModel: ObservableObject {
     }
     
     func newGame() {
-        
         var initBoard = [BlockState]()
         for _ in 0..<9 {
             initBoard.append(BlockState.empty)
@@ -30,8 +29,27 @@ class GameBoardDataModel: ObservableObject {
         
         // initialize game board with array of empty non-move states
         board = initBoard
+        
+        // randomize starting player
+        let coinFlip = Bool.random()
+        
+        if(coinFlip) {
+            currentMove = MoveState.player
+        } else {
+            currentMove = MoveState.opponent
+        }
     }
     
-    
-    
+    // determine move made and who's turn it is
+    func makeMove(indexOfMove: Int) {
+        // make move based on who's turn it is
+        if(currentMove == .player) {
+            board[indexOfMove] = .circle
+            currentMove = .opponent
+        } else {
+            board[indexOfMove] = .cross
+            currentMove = .player
+        }
+    }
+
 }

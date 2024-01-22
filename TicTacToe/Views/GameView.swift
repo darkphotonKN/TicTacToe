@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct GameView: View {
+    @EnvironmentObject var gameBoardDM: GameBoardDataModel
     private var gridSpacing: CGFloat = 10
     
     var body: some View {
         VStack {
+            // MARK: Title
+            Text("Tic-Tac-Toe")
+                .font(.title)
+                .padding(.top, 15)
+            Spacer()
+                
+            Text("Current Move: \(gameBoardDM.currentMove == .opponent ? "Cross" : "Circle")")
             // MARK: Main Grid
             Grid(horizontalSpacing: gridSpacing, verticalSpacing: gridSpacing) {
                 
@@ -27,6 +35,7 @@ struct GameView: View {
                     }
                 }
             }
+            Spacer()
             
         }
     }

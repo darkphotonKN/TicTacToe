@@ -37,7 +37,8 @@ struct GridBlockView: View {
         .frame(width: squareDimension, height: squareDimension)
         .border(.black)
         .onTapGesture {
-            gameBoardDM.board[index] = BlockState.circle
+            print("DEBUG:", gameBoardDM.currentMove)
+            gameBoardDM.makeMove(indexOfMove: index)
         }
     }
 }
