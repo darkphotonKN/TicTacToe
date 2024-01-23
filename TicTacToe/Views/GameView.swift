@@ -17,9 +17,10 @@ struct GameView: View {
             Text("Tic-Tac-Toe")
                 .font(.title)
                 .padding(.top, 15)
+            
             Spacer()
                 
-            Text("Current Move: \(gameBoardDM.currentMove == .opponent ? "Cross" : "Circle")")
+            Text("Current Move: \(gameBoardDM.currentMove == .player ? "Circle" : "Cross")")
             // MARK: Main Grid
             Grid(horizontalSpacing: gridSpacing, verticalSpacing: gridSpacing) {
                 

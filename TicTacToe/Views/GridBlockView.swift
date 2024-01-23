@@ -12,8 +12,6 @@ struct GridBlockView: View {
     var index: Int
     var squareDimension: CGFloat = 60
     
-    
-    
     var body: some View {
         VStack {
             switch gameBoardDM.board[index] {
