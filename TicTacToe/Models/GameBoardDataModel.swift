@@ -22,6 +22,10 @@ class GameBoardDataModel: ObservableObject {
         print("Initialized game board... \(board)")
     }
     
+    func resetGame() {
+        newGame()
+    }
+    
     // MARK: Handles all New Game Initalization
     func newGame() {
         var initBoard = [BlockState]()
@@ -40,6 +44,9 @@ class GameBoardDataModel: ObservableObject {
         } else {
             currentMove = MoveState.opponent
         }
+        
+        // reset winner if there was one
+        winState = nil
     }
     
     // MARK: determine move made and who's turn it is

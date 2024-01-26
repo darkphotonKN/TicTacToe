@@ -39,7 +39,8 @@ struct GameResultView: View {
                         .padding(.top, 10)
                     
                     Button {
-                        
+                        // reset game
+                        gameBoardDM.resetGame()
                     } label: {
                         Text("Try Again?")
                     }
@@ -61,7 +62,8 @@ struct GameResultView: View {
                         .padding(.top, 10)
                     
                     Button {
-                        
+                        // reset game
+                        gameBoardDM.resetGame()
                     } label: {
                         Text("Play Again?")
                     }
