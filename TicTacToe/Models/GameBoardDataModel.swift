@@ -56,16 +56,19 @@ class GameBoardDataModel: ObservableObject {
             currentMove = .player
         }
         
-        let winner = checkWinner()
-        if (winner) {
-            print("\(currentMove == .player ? "circle" : "cross") has won the game!")
+        if let tempCurrentMove = currentMove {
+            let winner = checkWinner(move: tempCurrentMove)
+            if (winner) {
+                print("\(currentMove == .player ? "circle" : "cross") has won the game!")
+            }
         }
     }
     
     // MARK: check for winner
-    func checkWinner() -> Bool {
-        // run through board state to check for winner
+    func checkWinner(move: MoveState) -> Bool {
+        print("move:", move)
         
+        // run through board state to check for winner
         
         // list out all possible board states
         
@@ -100,17 +103,22 @@ class GameBoardDataModel: ObservableObject {
         var score = 0
         
         for winState in winStates {
-            // check if these win state indexes are occupied by the current player
+            // check if these win state indexes are occupied by a specific player
             for index in winState {
-                if(currentMove == .player) {
-                    // check circles during player's turn
+                // check circles during player's turn
+                if(move == .player) {
+                    print("DEBUG: current board - \(board)")
                     if(board[index] == .circle) {
                         score += 1
+                        print("DEBUG: Current player is circle, and after adding score: \(score)")
                     }
-                } else {
-                    // else check for crosses during opponent's turn
+                }
+                // else check for crosses during opponent's turn
+                else {
+                    print("DEBUG: current board - \(board)")
                     if(board[index] == .cross) {
                         score += 1
+                        print("DEBUG: Current player is cross, and after adding score: \(score)")
                     }
                 }
             }
