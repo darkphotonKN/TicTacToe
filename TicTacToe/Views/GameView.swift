@@ -12,32 +12,41 @@ struct GameView: View {
     private var gridSpacing: CGFloat = 10
     
     var body: some View {
-        VStack {
-            // MARK: Title
-            Text("Tic-Tac-Toe")
-                .font(.title)
-                .padding(.top, 15)
+        
+        ZStack {
             
-            Spacer()
+            VStack {
+                // MARK: Title
+                Text("Tic-Tac-Toe")
+                    .font(.title)
+                    .padding(.top, 15)
                 
-            Text("Current Move: \(gameBoardDM.currentMove == .player ? "Circle" : "Cross")")
-            // MARK: Main Grid
-            Grid(horizontalSpacing: gridSpacing, verticalSpacing: gridSpacing) {
+                Spacer()
                 
-                // iterating through columns
-                ForEach(0..<3, id: \.self) { columnIndex in
+                Text("Current Move: \(gameBoardDM.currentMove == .player ? "Circle" : "Cross")")
+                // MARK: Main Grid
+                Grid(horizontalSpacing: gridSpacing, verticalSpacing: gridSpacing) {
                     
-                    GridRow {
-                        // iterating through rows
-                        ForEach(0..<3, id: \.self) { rowIndex in
-                            
-                            GridBlockView(index: columnIndex*3 + rowIndex)
+                    // iterating through columns
+                    ForEach(0..<3, id: \.self) { columnIndex in
+                        
+                        GridRow {
+                            // iterating through rows
+                            ForEach(0..<3, id: \.self) { rowIndex in
+                                
+                                GridBlockView(index: columnIndex*3 + rowIndex)
+                            }
                         }
                     }
                 }
+                Spacer()
+                
             }
-            Spacer()
             
+            // MARK: Game Result Overlay Modal
+            if(gameBoardDM.winState != nil) {
+                GameResultView()
+            }
         }
     }
 }

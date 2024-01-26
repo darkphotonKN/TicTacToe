@@ -16,6 +16,7 @@
 		8F943BE82B5D03CC00671C93 /* BlockState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F943BE72B5D03CC00671C93 /* BlockState.swift */; };
 		8F943BEA2B5EA0CD00671C93 /* GridBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F943BE92B5EA0CD00671C93 /* GridBlockView.swift */; };
 		8F943BEC2B5EC7B100671C93 /* MoveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F943BEB2B5EC7B100671C93 /* MoveState.swift */; };
+		8F943BEE2B63D94A00671C93 /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F943BED2B63D94A00671C93 /* GameResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		8F943BE72B5D03CC00671C93 /* BlockState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockState.swift; sourceTree = "<group>"; };
 		8F943BE92B5EA0CD00671C93 /* GridBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridBlockView.swift; sourceTree = "<group>"; };
 		8F943BEB2B5EC7B100671C93 /* MoveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveState.swift; sourceTree = "<group>"; };
+		8F943BED2B63D94A00671C93 /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				8F943BD52B5D02BE00671C93 /* GameView.swift */,
 				8F943BE22B5D034500671C93 /* BoardView.swift */,
 				8F943BE92B5EA0CD00671C93 /* GridBlockView.swift */,
+				8F943BED2B63D94A00671C93 /* GameResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				8F943BEA2B5EA0CD00671C93 /* GridBlockView.swift in Sources */,
 				8F943BE62B5D036E00671C93 /* GameBoardDataModel.swift in Sources */,
 				8F943BE82B5D03CC00671C93 /* BlockState.swift in Sources */,
+				8F943BEE2B63D94A00671C93 /* GameResultView.swift in Sources */,
 				8F943BEC2B5EC7B100671C93 /* MoveState.swift in Sources */,
 				8F943BE32B5D034500671C93 /* BoardView.swift in Sources */,
 				8F943BD62B5D02BE00671C93 /* GameView.swift in Sources */,

@@ -14,6 +14,7 @@ import Foundation
 class GameBoardDataModel: ObservableObject {
     @Published var board: [BlockState] = []
     @Published var currentMove: MoveState?
+    @Published var winState: MoveState?
     
     // initialize game
     init() {
@@ -47,25 +48,27 @@ class GameBoardDataModel: ObservableObject {
         // guard against the situation board is not empty to prevent unnecessary move
         guard board[indexOfMove] == .empty else { return }
         
-        // make move based on who's turn it is
-        if(currentMove == .player) {
-            board[indexOfMove] = .circle
-            currentMove = .opponent
-        } else {
-            board[indexOfMove] = .cross
-            currentMove = .player
-        }
-        
         if let tempCurrentMove = currentMove {
+            // make move based on who's turn it is
+            if(currentMove == .player) {
+                board[indexOfMove] = .circle
+                currentMove = .opponent
+            } else {
+                board[indexOfMove] = .cross
+                currentMove = .player
+            }
+        
             let winner = checkWinner(move: tempCurrentMove)
-            if (winner) {
-                print("\(currentMove == .player ? "circle" : "cross") has won the game!")
+            if let winner = winner {
+                print("\(winner == .player ? "circle" : "cross") has won the game!")
+                winState = winner
             }
         }
+        
     }
     
     // MARK: check for winner
-    func checkWinner(move: MoveState) -> Bool {
+    func checkWinner(move: MoveState) -> MoveState? {
         print("move:", move)
         
         // run through board state to check for winner
@@ -97,7 +100,7 @@ class GameBoardDataModel: ObservableObject {
          2, 5, 6
          */
         
-        let winStates = [[0, 1, 2]]
+        let winStates = [[0, 1, 2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,5,6]]
         
         // record number of consequetive matching O's or X's
         var score = 0
@@ -110,7 +113,7 @@ class GameBoardDataModel: ObservableObject {
                     print("DEBUG: current board - \(board)")
                     if(board[index] == .circle) {
                         score += 1
-                        print("DEBUG: Current player is circle, and after adding score: \(score)")
+                        // print("DEBUG: Current player is circle, and after adding score: \(score)")
                     }
                 }
                 // else check for crosses during opponent's turn
@@ -118,19 +121,19 @@ class GameBoardDataModel: ObservableObject {
                     print("DEBUG: current board - \(board)")
                     if(board[index] == .cross) {
                         score += 1
-                        print("DEBUG: Current player is cross, and after adding score: \(score)")
+                        // print("DEBUG: Current player is cross, and after adding score: \(score)")
                     }
                 }
             }
             print("current score: \(score)")
             // stop loop to determine winner
-            guard score == 3 else { return true }
+            guard score != 3 else { return move }
+            
             // reset score after checking each pattern
             score = 0
         }
         
-        // end state, no winner yet
-        return false
+        return nil
     }
 
 }
