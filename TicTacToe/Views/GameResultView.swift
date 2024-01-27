@@ -23,8 +23,23 @@ struct GameResultView: View {
             
             // game result modal
             VStack {
-                // if player lost
-                if(gameBoardDM.winState == .opponent) {
+                
+                switch(gameBoardDM.winState) {
+                case .empty:
+                    HStack {
+                        Text("The game was drawn!")
+                            .font(.system(size: 24, weight: .medium))
+                    }
+                    
+                    Button {
+                        // reset game
+                        gameBoardDM.resetGame()
+                    } label: {
+                        Text("Try Again?")
+                    }
+                    .font(.system(size: 20, weight: .medium))
+                    .padding(.top, 18)
+                case .cross:
                     HStack {
                         Text("Cross was the winner")
                             .font(.system(size: 24, weight: .medium))
@@ -46,7 +61,8 @@ struct GameResultView: View {
                     }
                     .font(.system(size: 20, weight: .medium))
                     .padding(.top, 18)
-                } else {
+                    
+                case .circle:
                     // if player won
                     HStack {
                         Text("Circle was the winner")
@@ -69,7 +85,12 @@ struct GameResultView: View {
                     }
                     .font(.system(size: 20, weight: .medium))
                     .padding(.top, 18)
+                    
+                default:
+                    Text("")
                 }
+                
+               
             }
             .frame(width: viewSizeWidth, height: viewSizeHeight)
             .background(.white)

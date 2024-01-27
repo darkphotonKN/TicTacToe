@@ -14,7 +14,7 @@ import Foundation
 class GameBoardDataModel: ObservableObject {
     @Published var board: [BlockState] = []
     @Published var currentMove: MoveState?
-    @Published var winState: MoveState?
+    @Published var winState: BlockState?
     
     // initialize game
     init() {
@@ -68,13 +68,28 @@ class GameBoardDataModel: ObservableObject {
             let winner = checkWinner(move: tempCurrentMove)
             if let winner = winner {
                 print("\(winner == .player ? "circle" : "cross") has won the game!")
-                winState = winner
+                winState = winner == .player ? .circle : .cross
+            }
+            let gameDrawn = checkDraw()
+            if(gameDrawn) {
+                winState = .empty
             }
         }
         
     }
     
-    // MARK: check for winner
+    // MARK: Check for Draw
+    func checkDraw() -> Bool {
+        // iterate through board state and find the first .empty block
+        // we guard against this and if none are empty, then we return
+        // true to show that the game is at a draw
+        
+        guard board.first(where: { $0 == .empty }) != nil else { return true }
+        
+        return false
+    }
+    
+    // MARK: Check for Winner
     func checkWinner(move: MoveState) -> MoveState? {
         print("move:", move)
         
