@@ -14,7 +14,7 @@ struct TicTacToeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            GameView().environmentObject(GameBoardDataModel())
+            MainView().environmentObject(GameBoardDataModel())
         }
     }
 }
