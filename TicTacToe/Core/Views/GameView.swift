@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct GameView: View {
+    
+    /*
+     
+     @State -> @Binding
+     @StateObject -> @Published (@State)
+     @EnvironmentObject
+     */
     @EnvironmentObject var gameBoardDM: GameBoardDataModel
     private var gridSpacing: CGFloat = 10
     

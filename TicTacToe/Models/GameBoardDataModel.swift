@@ -11,10 +11,12 @@ import Foundation
 /*
  Logic and data structure for game board items
  */
+
 class GameBoardDataModel: ObservableObject {
     @Published var board: [BlockState] = []
     @Published var currentMove: MoveState?
     @Published var winState: BlockState?
+    
     
     // initialize game
     init() {

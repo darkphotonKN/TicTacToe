@@ -6,6 +6,7 @@
 //
 
 enum GameViewState {
+    case home
     case playersList
     case gameBoard
 }
